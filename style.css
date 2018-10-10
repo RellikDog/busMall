@@ -1,0 +1,6 @@
+section div img{
+    width: 300px;
+}
+section div{
+    display: inline-block;
+}
