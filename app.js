@@ -4,7 +4,9 @@ var mainSection = document.getElementById('clickMe');
 var disp1 = document.getElementById('item1');
 var disp2 = document.getElementById('item2');
 var disp3 = document.getElementById('item3');
-
+var usedImage1;
+var usedImage2;
+var usedImage3;
 //object construct
 StoreItem.array = [];
 function StoreItem(src, title) {
@@ -15,7 +17,7 @@ function StoreItem(src, title) {
 
   StoreItem.array.push(this);
 }
-
+//Image objects
 new StoreItem ('/img/bag.jpg', 'Droid Bag');
 new StoreItem ('img/banana.jpg', 'Banana Slicer');
 new StoreItem ('./img/bathroom.jpg', 'Bathroom Stand');
@@ -35,10 +37,45 @@ new StoreItem ('./img/unicorn.jpg', 'Authentic Unicorn Meat');
 new StoreItem ('./img/water-can.jpg', 'Worlds Best Water Can');
 new StoreItem ('./img/wine-glass.jpg', 'Artsy Wine Glass');
 
+var renderNewOptions = function () {
+  do{
+    var numOne = Math.round(Math.random() * StoreItem.array.length);
+  }while(numOne === usedImage1 || numOne === usedImage2 || numOne === usedImage3);
+  do{
+    var numTwo = Math.round(Math.random() * StoreItem.array.length);
+  }while(numTwo === usedImage1 || numTwo === usedImage2 || numTwo === usedImage3 || numTwo === numOne);
+  do{
+    var numTre = Math.round(Math.random() * StoreItem.array.length);
+  }while(numTre === usedImage1 || numTre === usedImage2 || numTre === usedImage3 || numTre === numTwo || numTre === numOne);
+  // console.log(numOne);
+  // console.log(numTwo);
+  // console.log(numTre);
+  disp1.src = StoreItem.array[numOne].src;
+  disp2.src = StoreItem.array[numTwo].src;
+  disp3.src = StoreItem.array[numTre].src;
 
-disp1.src = StoreItem.array[0].src;
-disp2.src = StoreItem.array[1].src;
-disp3.src = StoreItem.array[2].src;
+  StoreItem.array[numOne].viewed++;
+  StoreItem.array[numTwo].viewed++;
+  StoreItem.array[numTre].viewed++;
+
+  disp1.dataset.index = numOne;
+  disp2.dataset.index = numTwo;
+  disp3.dataset.index = numTre;
+
+  usedImage1 = numOne;
+  usedImage2 = numTwo;
+  usedImage3 = numTre;
+};
+renderNewOptions();
+
+mainSection.addEventListener('click', onclick);
+var onclick = function (event){
+  if (event.target.id === 'item1' || event.target.id === 'item2' || event.target.id === 'item3') {
+    StoreItem.array[event.target.dataset.index].liked++;
+    renderNewOptions();
+  }
+  console.log(event.target);
+};
 
 
 
