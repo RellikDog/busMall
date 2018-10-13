@@ -4,9 +4,13 @@ var mainSection = document.getElementById('clickMe');
 var disp1 = document.getElementById('item1');
 var disp2 = document.getElementById('item2');
 var disp3 = document.getElementById('item3');
+var disp1Tit = document.getElementById('item1Tit');
+var disp2Tit = document.getElementById('item2Tit');
+var disp3Tit = document.getElementById('item3Tit');
 var usedImage1;
 var usedImage2;
 var usedImage3;
+var itemClicks = 0;
 //object construct
 StoreItem.array = [];
 function StoreItem(src, title) {
@@ -47,9 +51,6 @@ var renderNewOptions = function () {
   do{
     var numTre = Math.round(Math.random() * StoreItem.array.length);
   }while(numTre === usedImage1 || numTre === usedImage2 || numTre === usedImage3 || numTre === numTwo || numTre === numOne);
-  // console.log(numOne);
-  // console.log(numTwo);
-  // console.log(numTre);
   disp1.src = StoreItem.array[numOne].src;
   disp2.src = StoreItem.array[numTwo].src;
   disp3.src = StoreItem.array[numTre].src;
@@ -62,20 +63,26 @@ var renderNewOptions = function () {
   disp2.dataset.index = numTwo;
   disp3.dataset.index = numTre;
 
+  disp1Tit.textContent = StoreItem.array[numOne].title;
+  disp2Tit.textContent = StoreItem.array[numTwo].title;
+  disp3Tit.textContent = StoreItem.array[numTre].title;
+
   usedImage1 = numOne;
   usedImage2 = numTwo;
   usedImage3 = numTre;
+  itemClicks++;
+  if (itemClicks === 25) {
+    mainSection.removeEventListener('click', onClick);
+  }
 };
 renderNewOptions();
-
-mainSection.addEventListener('click', onclick);
-var onclick = function (event){
+var onClick = function (event){
   if (event.target.id === 'item1' || event.target.id === 'item2' || event.target.id === 'item3') {
     StoreItem.array[event.target.dataset.index].liked++;
     renderNewOptions();
   }
   console.log(event.target);
 };
-
+mainSection.addEventListener('click', onClick);
 
 
