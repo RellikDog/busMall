@@ -89,7 +89,19 @@ var renderNewOptions = function () {
         scales: {
           xAxes: [{
             type: 'linear',
-            position: 'bottom'
+            position: 'bottom',
+            scaleLabel: {
+              display: true,
+              labelString: 'Times Viewed',
+              fontSize: 20}
+          }],
+          yAxes: [{
+            type: 'linear',
+            // position: 'bottom',
+            scaleLabel: {
+              display: true,
+              labelString: 'Times Liked',
+              fontSize: 20}
           }]
         }
       }

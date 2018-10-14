@@ -1,7 +1,24 @@
-*{
+/* * {
     border: 1px dashed #000000;
+  
+} */
+header {
+    text-align: center;
+    background-color: aqua;
+    padding: 20px;
 }
-
+/* h1{
+    font-style: italic;
+} */
+main{
+    background-color: darkgreen;
+}
+main p{
+    text-align: center;
+    width: 500px;
+    margin: auto;
+    background-color: aqua;
+}
 section div img{
     width: 300px;
     height: 400px;
@@ -9,7 +26,12 @@ section div img{
 section div{
     display: inline-block;
     margin-top: 1px;
+    background-color: wheat;
 }
 section{
     text-align: center;
+}
+canvas{
+    background-color: whitesmoke;
+    width: 100%;
 }
