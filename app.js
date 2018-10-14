@@ -43,6 +43,8 @@ new StoreItem('./img/tauntaun.jpg', 'StarWars Sleeping Bag');
 new StoreItem('./img/unicorn.jpg', 'Authentic Unicorn Meat');
 new StoreItem('./img/water-can.jpg', 'Worlds Best Water Can');
 new StoreItem('./img/wine-glass.jpg', 'Artsy Wine Glass');
+new StoreItem('/img/usb.gif', 'Wiggly USB Stick');
+new StoreItem('/img/sweep.png', 'Baby Mop');
 
 var renderNewOptions = function () {
   do {
@@ -148,6 +150,8 @@ var makeChartData = function () {
     'rgba(232, 0, 0, 1)',
     'rgba(249, 255, 86, 1)',
     'rgba(0, 237, 249, 1)',
+    'rgba(249, 100, 100, 1)',
+    'rgba(200, 50, 249, 1)',
   ];
   for (var i in StoreItemArray) {
     // picNames.push(StoreItemArray[i].title);
