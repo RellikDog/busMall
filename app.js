@@ -48,13 +48,13 @@ new StoreItem('/img/sweep.png', 'Baby Mop');
 
 var renderNewOptions = function () {
   do {
-    numOne = Math.round(Math.random() * StoreItemArray.length);
+    numOne = Math.floor(Math.random() * StoreItemArray.length);
   } while (numOne === usedImage1 || numOne === usedImage2 || numOne === usedImage3);
   do {
-    numTwo = Math.round(Math.random() * StoreItemArray.length);
+    numTwo = Math.floor(Math.random() * StoreItemArray.length);
   } while (numTwo === usedImage1 || numTwo === usedImage2 || numTwo === usedImage3 || numTwo === numOne);
   do {
-    numTre = Math.round(Math.random() * StoreItemArray.length);
+    numTre = Math.floor(Math.random() * StoreItemArray.length);
   } while (numTre === usedImage1 || numTre === usedImage2 || numTre === usedImage3 || numTre === numTwo || numTre === numOne);
   disp1.src = StoreItemArray[numOne].src;
   disp2.src = StoreItemArray[numTwo].src;
