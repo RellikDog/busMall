@@ -24,3 +24,26 @@ As the MRT we want the FGTs to like the way the site looks and operates so that 
 As the MRT we want a site that arcutratly tracks and stores data so that the data is usable in practice.
 
 The MRT also wants to have easy access to the site so that they can modify the products being focus tested. 
+
+
+notes from peter
+//source array
+let originalArr = ['whatever1','whatever2','whatever3','whatever4','whatever5','whatever6', 'whatever7', 'whatever8', 'whatever9' ];
+let randosGrabbed = [];
+
+let GoingToBeSplicedArr = originalArr.map(ele => ele);
+
+
+var randoGrabber = function(){
+
+  GoingToBeSplicedArr = originalArr.map(ele => ele);// use [...orginalArr]
+
+  let singleGrab = GoingToBeSplicedArr[Math.floor(Math.random() * GoingToBeSplicedArr.length)];
+  randosGrabbed.push(singleGrab);
+
+  let singleGrabIndexVal = GoingToBeSplicedArr.indexOf(singleGrab);
+  GoingToBeSplicedArr.splice(singleGrabIndexVal, 1);
+};
+
+note from class
+https://repl.it/@ncarignan/ExtralargeFakeGigahertz
