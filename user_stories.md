@@ -47,3 +47,18 @@ var randoGrabber = function(){
 
 note from class
 https://repl.it/@ncarignan/ExtralargeFakeGigahertz
+
+var dynamicColors = function(){
+  for (var i = 0; i < 20; i++) {
+    var r = Math.floor(Math.random() * 255);
+    var g = Math.floor(Math.random() * 255);
+    var b = Math.floor(Math.random() * 255);
+    backgroundColors.push(`rgb(${r},${g},${b},5.0)`);
+  };
+  for (var i = 0; i < 20; i++) {
+    var r = Math.floor(Math.random() * 255);
+    var g = Math.floor(Math.random() * 255);
+    var b = Math.floor(Math.random() * 255);
+    borderColors.push(`rgb(${r},${g},${b},5.0)`);
+  };
+};

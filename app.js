@@ -14,8 +14,6 @@ var itemClicks = 0;
 var numOne;
 var numTwo;
 var numTre;
-//object construct
-var StoreItemArray = [];
 function StoreItem(src, title) {
   this.src = src;
   this.title = title;
@@ -24,27 +22,35 @@ function StoreItem(src, title) {
 
   StoreItemArray.push(this);
 }
-//Image objects
-new StoreItem('/img/bag.jpg', 'Droid Bag');
-new StoreItem('img/banana.jpg', 'Banana Slicer');
-new StoreItem('./img/bathroom.jpg', 'Bathroom Stand');
-new StoreItem('./img/boots.jpg', 'Rain Boots');
-new StoreItem('./img/breakfast.jpg', 'All-in-One Breakfast Maker');
-new StoreItem('./img/bubblegum.jpg', 'Meatball Bubble Gum');
-new StoreItem('./img/chair.jpg', 'Abstract Chair');
-new StoreItem('./img/cthulhu.jpg', 'Cthulhu Miniature');
-new StoreItem('./img/dog-duck.jpg', 'Duck Costume for Dogs');
-new StoreItem('./img/dragon.jpg', 'Novelty Dragon Meat');
-new StoreItem('./img/pen.jpg', 'Silverware Shaped Pen Caps');
-new StoreItem('./img/pet-sweep.jpg', 'Pet Dusting Acessory');
-new StoreItem('./img/scissors.jpg', 'Pizza Shears');
-new StoreItem('./img/shark.jpg', 'Shark Shaped Sleeping Bag');
-new StoreItem('./img/tauntaun.jpg', 'StarWars Sleeping Bag');
-new StoreItem('./img/unicorn.jpg', 'Authentic Unicorn Meat');
-new StoreItem('./img/water-can.jpg', 'Worlds Best Water Can');
-new StoreItem('./img/wine-glass.jpg', 'Artsy Wine Glass');
-new StoreItem('/img/usb.gif', 'Wiggly USB Stick');
-new StoreItem('/img/sweep.png', 'Baby Mop');
+//localstore
+if (!localStorage.getItem('itemData')) {
+  var StoreItemArray = [];
+  //Image objects
+  new StoreItem('/img/bag.jpg', 'Droid Bag');
+  new StoreItem('img/banana.jpg', 'Banana Slicer');
+  new StoreItem('./img/bathroom.jpg', 'Bathroom Stand');
+  new StoreItem('./img/boots.jpg', 'Rain Boots');
+  new StoreItem('./img/breakfast.jpg', 'All-in-One Breakfast Maker');
+  new StoreItem('./img/bubblegum.jpg', 'Meatball Bubble Gum');
+  new StoreItem('./img/chair.jpg', 'Abstract Chair');
+  new StoreItem('./img/cthulhu.jpg', 'Cthulhu Miniature');
+  new StoreItem('./img/dog-duck.jpg', 'Duck Costume for Dogs');
+  new StoreItem('./img/dragon.jpg', 'Novelty Dragon Meat');
+  new StoreItem('./img/pen.jpg', 'Silverware Shaped Pen Caps');
+  new StoreItem('./img/pet-sweep.jpg', 'Pet Dusting Acessory');
+  new StoreItem('./img/scissors.jpg', 'Pizza Shears');
+  new StoreItem('./img/shark.jpg', 'Shark Shaped Sleeping Bag');
+  new StoreItem('./img/tauntaun.jpg', 'StarWars Sleeping Bag');
+  new StoreItem('./img/unicorn.jpg', 'Authentic Unicorn Meat');
+  new StoreItem('./img/water-can.jpg', 'Worlds Best Water Can');
+  new StoreItem('./img/wine-glass.jpg', 'Artsy Wine Glass');
+  new StoreItem('/img/usb.gif', 'Wiggly USB Stick');
+  new StoreItem('/img/sweep.png', 'Baby Mop');
+} else { // if local storage, grab that data and use it
+  StoreItemArray = JSON.parse(localStorage.getItem('itemData'));
+}
+
+
 
 var renderNewOptions = function () {
   do {
@@ -77,9 +83,11 @@ var renderNewOptions = function () {
   usedImage3 = numTre;
   itemClicks++;
   if (itemClicks === 25) {
+    localStorage.setItem('itemData', JSON.stringify(StoreItemArray));
     picSection.removeEventListener('click', onClick);
     picSection.parentElement.removeChild(picSection);
     makeChartData();
+    
     //======================================================
     var ctx = document.getElementById('myChart');
     var scatterChart = new Chart(ctx, {
@@ -95,7 +103,8 @@ var renderNewOptions = function () {
             scaleLabel: {
               display: true,
               labelString: 'Times Viewed',
-              fontSize: 20}
+              fontSize: 20
+            }
           }],
           yAxes: [{
             type: 'linear',
@@ -103,12 +112,15 @@ var renderNewOptions = function () {
             scaleLabel: {
               display: true,
               labelString: 'Times Liked',
-              fontSize: 20}
+              fontSize: 20
+            }
           }]
         }
       }
     });
     //
+    makeButt1();
+    makeButt2();
   }
 };
 renderNewOptions();
@@ -173,33 +185,33 @@ var makeChartData = function () {
 };
 
 
-
+// location.reload();
+// localStorage.clear();
 //=====================================
-// var ctx = document.getElementById("myChart");
-// var scatterChart = new Chart(ctx, {
-//   type: 'scatter',
-//   data: {
-//     datasets: [comboArray2]
-//   },
-//   options: {
-//     scales: {
-//       xAxes: [{
-//         type: 'linear',
-//         position: 'bottom'
-//       }]
-//     }
-//   }
-// });
+//make buttons
+var makeButt1 = function(){
+  var mainAppend = document.getElementById('main');
+  var butt1 = document.createElement('button');
+  butt1.setAttribute('type', 'button');
+  butt1.textContent = 'Reset Data';
+  mainAppend.appendChild(butt1);
+  butt1.addEventListener('click', butt1Func);
+};
+var butt1Func = function(){
+  localStorage.clear();
+  location.reload();
+};
+//
+var makeButt2 = function(){
+  var mainAppend = document.getElementById('main');
+  var butt2 = document.createElement('button');
+  butt2.setAttribute('type', 'button');
+  butt2.textContent = 'Add more data';
+  mainAppend.appendChild(butt2);
+  butt2.addEventListener('click', butt2Func);
+};
+var butt2Func = function(){
+  location.reload();
+};
 
-// data: {
-//   datasets: [{label: 'Scatter Dataset',data: [{x: -10,y: 0}, x: 0,y: 10}, {x: 10,y: 5}]}]
-// },
-// options: {
-//   scales: {
-//       xAxes: [{
-//           type: 'linear',
-//           position: 'bottom'
-//       }]
-//   }
-// }
-// });
+
