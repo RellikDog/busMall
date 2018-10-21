@@ -87,7 +87,6 @@ var renderNewOptions = function () {
     picSection.removeEventListener('click', onClick);
     picSection.parentElement.removeChild(picSection);
     makeChartData();
-    
     //======================================================
     var ctx = document.getElementById('myChart');
     var scatterChart = new Chart(ctx, {
