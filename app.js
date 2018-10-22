@@ -26,8 +26,8 @@ function StoreItem(src, title) {
 if (!localStorage.getItem('itemData')) {
   var StoreItemArray = [];
   //Image objects
-  new StoreItem('/img/bag.jpg', 'Droid Bag');
-  new StoreItem('img/banana.jpg', 'Banana Slicer');
+  new StoreItem('./img/bag.jpg', 'Droid Bag');
+  new StoreItem('./img/banana.jpg', 'Banana Slicer');
   new StoreItem('./img/bathroom.jpg', 'Bathroom Stand');
   new StoreItem('./img/boots.jpg', 'Rain Boots');
   new StoreItem('./img/breakfast.jpg', 'All-in-One Breakfast Maker');
@@ -44,8 +44,8 @@ if (!localStorage.getItem('itemData')) {
   new StoreItem('./img/unicorn.jpg', 'Authentic Unicorn Meat');
   new StoreItem('./img/water-can.jpg', 'Worlds Best Water Can');
   new StoreItem('./img/wine-glass.jpg', 'Artsy Wine Glass');
-  new StoreItem('/img/usb.gif', 'Wiggly USB Stick');
-  new StoreItem('/img/sweep.png', 'Baby Mop');
+  new StoreItem('./img/usb.gif', 'Wiggly USB Stick');
+  new StoreItem('./img/sweep.png', 'Baby Mop');
 } else { // if local storage, grab that data and use it
   StoreItemArray = JSON.parse(localStorage.getItem('itemData'));
 }
