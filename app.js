@@ -19,10 +19,9 @@ function StoreItem(src, title) {
   this.title = title;
   this.liked = 0;
   this.viewed = 0;
-
   StoreItemArray.push(this);
 }
-//localstore
+//localstorecheck
 if (!localStorage.getItem('itemData')) {
   var StoreItemArray = [];
   //Image objects
@@ -49,9 +48,6 @@ if (!localStorage.getItem('itemData')) {
 } else { // if local storage, grab that data and use it
   StoreItemArray = JSON.parse(localStorage.getItem('itemData'));
 }
-
-
-
 var renderNewOptions = function () {
   do {
     numOne = Math.floor(Math.random() * StoreItemArray.length);
@@ -65,19 +61,19 @@ var renderNewOptions = function () {
   disp1.src = StoreItemArray[numOne].src;
   disp2.src = StoreItemArray[numTwo].src;
   disp3.src = StoreItemArray[numTre].src;
-
+  //
   StoreItemArray[numOne].viewed++;
   StoreItemArray[numTwo].viewed++;
   StoreItemArray[numTre].viewed++;
-
+  //
   disp1.dataset.index = numOne;
   disp2.dataset.index = numTwo;
   disp3.dataset.index = numTre;
-
+  //
   disp1Tit.textContent = StoreItemArray[numOne].title;
   disp2Tit.textContent = StoreItemArray[numTwo].title;
   disp3Tit.textContent = StoreItemArray[numTre].title;
-
+  //
   usedImage1 = numOne;
   usedImage2 = numTwo;
   usedImage3 = numTre;
@@ -107,7 +103,6 @@ var renderNewOptions = function () {
           }],
           yAxes: [{
             type: 'linear',
-            // position: 'bottom',
             scaleLabel: {
               display: true,
               labelString: 'Times Liked',
@@ -117,7 +112,6 @@ var renderNewOptions = function () {
         }
       }
     });
-    //
     makeButt1();
     makeButt2();
   }
@@ -128,21 +122,14 @@ var onClick = function (event) {
     StoreItemArray[event.target.dataset.index].liked++;
     renderNewOptions();
   }
-  console.log(event.target);
 };
 picSection.addEventListener('click', onClick);
-
-
 //==========================================================
 //chart
 //=========================================================
 var comboArray = [];
 var comboArray2 = [];
 var makeChartData = function () {
-
-  // var picNames = [];
-  // var picLikes = [];
-  // var picViews = [];
   var colors = ['rgba(255,99,132,1)',
     'rgba(54, 162, 235, 1)',
     'rgba(255, 206, 86, 1)',
@@ -165,12 +152,10 @@ var makeChartData = function () {
     'rgba(200, 50, 249, 1)',
   ];
   for (var i in StoreItemArray) {
-    // picNames.push(StoreItemArray[i].title);
     comboArray.push({
       x: StoreItemArray[i].viewed,
       y: StoreItemArray[i].liked,
     });
-    // colors.push('red');
   }
   for (var x in StoreItemArray) {
     comboArray2.push({
@@ -180,12 +165,7 @@ var makeChartData = function () {
       pointRadius: 10
     });
   }
-  // var myChart = new Chart(ctx, scatterChart);
 };
-
-
-// location.reload();
-// localStorage.clear();
 //=====================================
 //make buttons
 var makeButt1 = function(){
