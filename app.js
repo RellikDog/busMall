@@ -27,7 +27,7 @@ if (!localStorage.getItem('itemData')) {
   var StoreItemArray = [];
   //Image objects
   new StoreItem('./img/bag.jpg', 'Droid Bag');
-  new StoreItem('img/banana.jpg', 'Banana Slicer');
+  new StoreItem('./img/banana.jpg', 'Banana Slicer');
   new StoreItem('./img/bathroom.jpg', 'Bathroom Stand');
   new StoreItem('./img/boots.jpg', 'Rain Boots');
   new StoreItem('./img/breakfast.jpg', 'All-in-One Breakfast Maker');
